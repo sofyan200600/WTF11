@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTF11 Mini-Survey Dashboard — Persepsi Pasar terhadap Dampak Ekonomi & Keberlanjutan Event</title>
+    <meta name="description" content="Dashboard interaktif yang memvisualisasikan hasil survei tentang persepsi pasar terhadap pentingnya pengukuran dampak ekonomi event dan penerapan prinsip keberlanjutan di industri MICE.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header-badge">WTF11 Mini-Survey • Hasil Survei</div>
+        <h1>Persepsi Pasar terhadap Dampak Ekonomi <br>& Keberlanjutan dalam Event</h1>
+        <p>Hasil survei dari para profesional industri mengenai pentingnya pengukuran dampak ekonomi dan penerapan prinsip keberlanjutan dalam penyelenggaraan event.</p>
+    </header>
+
+    <!-- STAT CARDS -->
+    <div class="stats-row" id="stats-row">
+        <div class="stat-card">
+            <div class="stat-value">108</div>
+            <div class="stat-label">Total Responden</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">4,46</div>
+            <div class="stat-label">Rata-rata Pentingnya Dampak Ekonomi</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">4,51</div>
+            <div class="stat-label">Rata-rata Pentingnya Keberlanjutan</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">14</div>
+            <div class="stat-label">Jenis Organisasi</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">84%</div>
+            <div class="stat-label">Menilai Keberlanjutan ≥ 4</div>
+        </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs" id="tabs">
+        <button class="tab-btn active" data-tab="tab-overview" id="tab-btn-overview">📊 Ringkasan</button>
+        <button class="tab-btn" data-tab="tab-impact" id="tab-btn-impact">📈 Dampak Ekonomi & Keberlanjutan</button>
+        <button class="tab-btn" data-tab="tab-challenges" id="tab-btn-challenges">⚠️ Tantangan</button>
+        <button class="tab-btn" data-tab="tab-certification" id="tab-btn-certification">🏅 Sertifikasi</button>
+    </div>
+
+    <!-- ====== TAB 1: RINGKASAN ====== -->
+    <div class="tab-content active" id="tab-overview">
+        <div class="chart-grid chart-grid-2">
+            <div class="chart-card" id="card-org-type">
+                <h3>Responden Berdasarkan Jenis Organisasi</h3>
+                <p class="chart-subtitle">Distribusi responden di berbagai sektor industri</p>
+                <div class="chart-wrapper" style="height:400px;">
+                    <canvas id="chartOrgType"></canvas>
+                </div>
+            </div>
+            <div class="chart-card" id="card-event-freq">
+                <h3>Frekuensi Event Per Tahun</h3>
+                <p class="chart-subtitle">Jumlah event yang diselenggarakan responden per tahun</p>
+                <div class="chart-wrapper" style="height:400px;">
+                    <canvas id="chartEventFreq"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="chart-grid chart-grid-2" style="margin-top:0;">
+            <div class="chart-card" id="card-event-scale">
+                <h3>Distribusi Skala Event</h3>
+                <p class="chart-subtitle">Proporsi event berdasarkan jangkauan geografis (boleh memilih lebih dari satu)</p>
+                <div class="chart-wrapper" style="height:340px;">
+                    <canvas id="chartEventScale"></canvas>
+                </div>
+            </div>
+            <div class="chart-card" id="card-knowledge">
+                <h3>Tingkat Pengetahuan tentang Metodologi Dampak Ekonomi</h3>
+                <p class="chart-subtitle">Penilaian mandiri tentang keakraban dengan tools pengukuran dampak ekonomi event</p>
+                <div class="chart-wrapper" style="height:340px;">
+                    <canvas id="chartKnowledge"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== TAB 2: DAMPAK EKONOMI & KEBERLANJUTAN ====== -->
+    <div class="tab-content" id="tab-impact">
+
+        <!-- Bagian atas: Dua chart berdampingan -->
+        <div class="chart-grid chart-grid-2">
+            <div class="chart-card" id="card-sustain-ratings">
+                <h3>Pentingnya Aspek Keberlanjutan</h3>
+                <p class="chart-subtitle">Skala Likert (1 = Tidak Penting, 5 = Sangat Penting) pada tiga dimensi keberlanjutan: Ekonomi, Lingkungan, dan Sosial</p>
+                <div class="chart-wrapper" style="height:380px;">
+                    <canvas id="chartSustainRatings"></canvas>
+                </div>
+                <div class="insight-box">
+                    <span class="icon">🌱</span>
+                    <p><strong>Temuan Utama:</strong> Aspek Sosial (pemberdayaan komunitas lokal, UMKM, aksesibilitas) mendapatkan skor tertinggi dengan <strong>67%</strong> responden menilai "Sangat Penting", sementara aspek Ekonomi (60%) dan Lingkungan (59%) juga dinilai tinggi oleh mayoritas responden.</p>
+                </div>
+            </div>
+            <div class="chart-card" id="card-econ-ratings">
+                <h3>Pentingnya Pengukuran Ekonomi Berdasarkan Tujuan</h3>
+                <p class="chart-subtitle">Skala Likert (1 = Tidak Penting, 5 = Sangat Penting) pada dua tujuan pengukuran dampak ekonomi</p>
+                <div class="chart-wrapper" style="height:380px;">
+                    <canvas id="chartEconRatings"></canvas>
+                </div>
+                <div class="insight-box">
+                    <span class="icon">💡</span>
+                    <p><strong>Temuan Utama:</strong> Pengukuran dampak ekonomi untuk komunikasi dengan pemangku kepentingan mendapatkan proporsi tertinggi pada skor "Sangat Penting" (58%), menunjukkan kebutuhan kuat akan pelaporan berbasis bukti.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rata-rata Skor per Dimensi Keberlanjutan -->
+        <div class="chart-grid chart-grid-2" style="margin-top:0;">
+            <div class="chart-card" id="card-sustain-avg">
+                <h3>Rata-rata Skor per Dimensi Keberlanjutan</h3>
+                <p class="chart-subtitle">Nilai rata-rata dari tiga dimensi: Ekonomi, Lingkungan, dan Sosial</p>
+                <div class="chart-wrapper" style="height:340px;">
+                    <canvas id="chartSustainAvg"></canvas>
+                </div>
+            </div>
+            <div class="chart-card" id="card-by-org">
+                <h3>Skor per Dimensi Berdasarkan Jenis Organisasi</h3>
+                <p class="chart-subtitle">Rata-rata skor Ekonomi, Lingkungan, dan Sosial pada organisasi utama</p>
+                <div class="chart-wrapper" style="height:340px;">
+                    <canvas id="chartByOrg"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== TAB 3: TANTANGAN ====== -->
+    <div class="tab-content" id="tab-challenges">
+        <div class="chart-grid chart-grid-1">
+            <div class="chart-card" id="card-challenges">
+                <h3>Tantangan Utama dalam Menerapkan Prinsip Keberlanjutan</h3>
+                <p class="chart-subtitle">Jawaban boleh lebih dari satu — menampilkan persentase responden yang memilih setiap tantangan</p>
+                <div class="chart-wrapper" style="height:400px;">
+                    <canvas id="chartChallenges"></canvas>
+                </div>
+                <div class="insight-box">
+                    <span class="icon">🎯</span>
+                    <p><strong>Temuan Utama:</strong> <strong>Kurangnya pengetahuan/SDM</strong> (61%) dan <strong>tidak ada regulasi/standar</strong> (54%) merupakan dua hambatan dominan, diikuti <strong>keterbatasan anggaran</strong> (51%). Mengatasi hal ini melalui peningkatan kapasitas dan penyusunan standar akan memberikan dampak terbesar.</p>
+                </div>
+            </div>
+        </div>
+        <div class="chart-grid chart-grid-2" style="margin-top: 0;">
+            <div class="chart-card" id="card-challenge-combo">
+                <h3>Jumlah Tantangan per Responden</h3>
+                <p class="chart-subtitle">Berapa banyak tantangan yang dipilih setiap responden secara bersamaan</p>
+                <div class="chart-wrapper" style="height:320px;">
+                    <canvas id="chartChallengeCombo"></canvas>
+                </div>
+            </div>
+            <div class="chart-card" id="card-challenge-by-knowledge">
+                <h3>Tantangan Utama Berdasarkan Tingkat Pengetahuan</h3>
+                <p class="chart-subtitle">Perbandingan pola tantangan antara responden yang memahami vs belum memahami</p>
+                <div class="chart-wrapper" style="height:320px;">
+                    <canvas id="chartChallengeByKnowledge"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== TAB 4: SERTIFIKASI ====== -->
+    <div class="tab-content" id="tab-certification">
+        <div class="chart-grid chart-grid-2">
+            <div class="chart-card" id="card-cert-status">
+                <h3>Status Sertifikasi Sustainable MICE</h3>
+                <p class="chart-subtitle">Status sertifikasi saat ini dari seluruh responden (tidak termasuk jawaban kosong)</p>
+                <div class="chart-wrapper" style="height:380px;">
+                    <canvas id="chartCertStatus"></canvas>
+                </div>
+            </div>
+            <div class="chart-card" id="card-cert-by-org">
+                <h3>Status Sertifikasi per Jenis Organisasi</h3>
+                <p class="chart-subtitle">Kesiapan sertifikasi di berbagai segmen organisasi utama</p>
+                <div class="chart-wrapper" style="height:380px;">
+                    <canvas id="chartCertByOrg"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="chart-grid chart-grid-1" style="margin-top:0;">
+            <div class="chart-card" id="card-cert-insight">
+                <h3>Sertifikasi vs. Persepsi Keberlanjutan</h3>
+                <p class="chart-subtitle">Rata-rata skor pentingnya keberlanjutan berdasarkan status sertifikasi</p>
+                <div class="chart-wrapper" style="height:340px;">
+                    <canvas id="chartCertVsEsg"></canvas>
+                </div>
+                <div class="insight-box">
+                    <span class="icon">🏆</span>
+                    <p><strong>Temuan Utama:</strong> Organisasi yang sedang dalam proses atau berencana mengajukan sertifikasi menunjukkan skor pentingnya keberlanjutan tertinggi (4,7 – 4,9), sementara yang belum berencana masih menilai 4,3. Kesenjangan ada pada aksi, bukan persepsi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <p>
+            WTF11 Mini-Survey Dashboard — Persepsi Pasar terhadap Pengukuran Dampak Ekonomi Event & Keberlanjutan<br>
+            Data dikumpulkan: 26 Maret – 20 April 2026 • 108 Responden<br>
+            Dibuat dengan ❤️ untuk Wise Steps Consulting
+        </p>
+    </footer>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
