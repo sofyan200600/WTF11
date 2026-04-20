@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WTF11 Mini-Survey Dashboard — Persepsi Pasar terhadap Dampak Ekonomi & Keberlanjutan Event</title>
-    <meta name="description" content="Dashboard interaktif yang memvisualisasikan hasil survei tentang persepsi pasar terhadap pentingnya pengukuran dampak ekonomi event dan penerapan prinsip keberlanjutan di industri MICE.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="description"
+        content="Dashboard interaktif yang memvisualisasikan hasil survei tentang persepsi pasar terhadap pentingnya pengukuran dampak ekonomi event dan penerapan prinsip keberlanjutan di industri MICE.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <style>
         :root {
             /* Brand Palette */
@@ -44,7 +48,11 @@
             --radius-sm: 10px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -58,10 +66,12 @@
         body::before {
             content: '';
             position: fixed;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background: radial-gradient(ellipse at 30% 20%, rgba(212, 180, 76, 0.04) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 60%, rgba(132, 152, 168, 0.03) 0%, transparent 50%);
+                radial-gradient(ellipse at 70% 60%, rgba(132, 152, 168, 0.03) 0%, transparent 50%);
             z-index: 0;
             pointer-events: none;
         }
@@ -98,15 +108,25 @@
 
         .header-badge::before {
             content: '';
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             background: var(--gold);
             border-radius: 50%;
             animation: pulse-dot 2s ease-in-out infinite;
         }
 
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
         }
 
         .header h1 {
@@ -152,16 +172,32 @@
         .stat-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             border-radius: var(--radius) var(--radius) 0 0;
         }
 
-        .stat-card:nth-child(1)::before { background: linear-gradient(90deg, var(--gold), var(--gold-dark)); }
-        .stat-card:nth-child(2)::before { background: linear-gradient(90deg, var(--steel-blue), var(--dark-teal)); }
-        .stat-card:nth-child(3)::before { background: linear-gradient(90deg, var(--dark-teal), var(--steel-blue)); }
-        .stat-card:nth-child(4)::before { background: linear-gradient(90deg, var(--warm-gray), var(--gold)); }
-        .stat-card:nth-child(5)::before { background: linear-gradient(90deg, var(--gold), var(--warm-gray)); }
+        .stat-card:nth-child(1)::before {
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+        }
+
+        .stat-card:nth-child(2)::before {
+            background: linear-gradient(90deg, var(--steel-blue), var(--dark-teal));
+        }
+
+        .stat-card:nth-child(3)::before {
+            background: linear-gradient(90deg, var(--dark-teal), var(--steel-blue));
+        }
+
+        .stat-card:nth-child(4)::before {
+            background: linear-gradient(90deg, var(--warm-gray), var(--gold));
+        }
+
+        .stat-card:nth-child(5)::before {
+            background: linear-gradient(90deg, var(--gold), var(--warm-gray));
+        }
 
         .stat-card:hover {
             transform: translateY(-2px);
@@ -175,11 +211,25 @@
             letter-spacing: -1px;
         }
 
-        .stat-card:nth-child(1) .stat-value { color: var(--gold-dark); }
-        .stat-card:nth-child(2) .stat-value { color: var(--dark-teal); }
-        .stat-card:nth-child(3) .stat-value { color: var(--gold-dark); }
-        .stat-card:nth-child(4) .stat-value { color: var(--dark-teal); }
-        .stat-card:nth-child(5) .stat-value { color: var(--warm-gray); }
+        .stat-card:nth-child(1) .stat-value {
+            color: var(--gold-dark);
+        }
+
+        .stat-card:nth-child(2) .stat-value {
+            color: var(--dark-teal);
+        }
+
+        .stat-card:nth-child(3) .stat-value {
+            color: var(--gold-dark);
+        }
+
+        .stat-card:nth-child(4) .stat-value {
+            color: var(--dark-teal);
+        }
+
+        .stat-card:nth-child(5) .stat-value {
+            color: var(--warm-gray);
+        }
 
         .stat-label {
             font-size: 12px;
@@ -194,10 +244,10 @@
             display: flex;
             gap: 4px;
             margin-bottom: 32px;
-            background: rgba(0,0,0,0.15);
+            background: rgba(0, 0, 0, 0.15);
             padding: 6px;
             border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -219,7 +269,7 @@
 
         .tab-btn:hover {
             color: var(--text-light);
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .tab-btn.active {
@@ -229,12 +279,25 @@
         }
 
         /* ===== TAB CONTENT ===== */
-        .tab-content { display: none; animation: fadeSlideIn 0.4s ease; }
-        .tab-content.active { display: block; }
+        .tab-content {
+            display: none;
+            animation: fadeSlideIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
 
         @keyframes fadeSlideIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ===== CHART CARDS ===== */
@@ -244,8 +307,13 @@
             margin-bottom: 32px;
         }
 
-        .chart-grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
-        .chart-grid-1 { grid-template-columns: 1fr; }
+        .chart-grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .chart-grid-1 {
+            grid-template-columns: 1fr;
+        }
 
         .chart-card {
             background: var(--bg-card);
@@ -279,7 +347,9 @@
             width: 100%;
         }
 
-        .chart-wrapper canvas { width: 100% !important; }
+        .chart-wrapper canvas {
+            width: 100% !important;
+        }
 
         /* ===== INSIGHT BOX ===== */
         .insight-box {
@@ -337,7 +407,7 @@
         .footer {
             text-align: center;
             padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 40px;
         }
 
@@ -349,887 +419,931 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            .header { padding: 32px 0 24px; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); }
-            .chart-grid-2 { grid-template-columns: 1fr; }
-            .chart-card { padding: 20px; }
-            .tabs { gap: 2px; }
-            .tab-btn { padding: 10px 14px; font-size: 12px; }
+            .container {
+                padding: 0 16px;
+            }
+
+            .header {
+                padding: 32px 0 24px;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-card {
+                padding: 20px;
+            }
+
+            .tabs {
+                gap: 2px;
+            }
+
+            .tab-btn {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
         }
 
         @media (max-width: 480px) {
-            .stats-row { grid-template-columns: 1fr 1fr; }
+            .stats-row {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <!-- HEADER -->
-    <header class="header" id="header">
-        <div class="header-badge">WTF11 Mini-Survey • Hasil Survei</div>
-        <h1>Persepsi Pasar terhadap Dampak Ekonomi <br>& Keberlanjutan dalam Event</h1>
-        <p>Hasil survei dari para profesional industri mengenai pentingnya pengukuran dampak ekonomi dan penerapan prinsip keberlanjutan dalam penyelenggaraan event.</p>
-    </header>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header" id="header">
+            <div class="header-badge">WTF11 Mini-Survey • Hasil Survei</div>
+            <h1>Persepsi Pasar terhadap Dampak Ekonomi <br>& Keberlanjutan dalam Event</h1>
+            <p>Hasil survei dari para profesional industri mengenai pentingnya pengukuran dampak ekonomi dan penerapan
+                prinsip keberlanjutan dalam penyelenggaraan event.</p>
+        </header>
 
-    <!-- STAT CARDS -->
-    <div class="stats-row" id="stats-row">
-        <div class="stat-card">
-            <div class="stat-value">108</div>
-            <div class="stat-label">Total Responden</div>
+        <!-- STAT CARDS -->
+        <div class="stats-row" id="stats-row">
+            <div class="stat-card">
+                <div class="stat-value">108</div>
+                <div class="stat-label">Total Responden</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4,46</div>
+                <div class="stat-label">Rata-rata Pentingnya Dampak Ekonomi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4,51</div>
+                <div class="stat-label">Rata-rata Pentingnya Keberlanjutan</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">14</div>
+                <div class="stat-label">Jenis Organisasi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">84%</div>
+                <div class="stat-label">Menilai Keberlanjutan ≥ 4</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">4,46</div>
-            <div class="stat-label">Rata-rata Pentingnya Dampak Ekonomi</div>
+
+        <!-- TABS -->
+        <div class="tabs" id="tabs">
+            <button class="tab-btn active" data-tab="tab-overview" id="tab-btn-overview">📊 Ringkasan</button>
+            <button class="tab-btn" data-tab="tab-impact" id="tab-btn-impact">📈 Dampak Ekonomi & Keberlanjutan</button>
+            <button class="tab-btn" data-tab="tab-challenges" id="tab-btn-challenges">⚠️ Tantangan</button>
+            <button class="tab-btn" data-tab="tab-certification" id="tab-btn-certification">🏅 Sertifikasi</button>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">4,51</div>
-            <div class="stat-label">Rata-rata Pentingnya Keberlanjutan</div>
+
+        <!-- ====== TAB 1: RINGKASAN ====== -->
+        <div class="tab-content active" id="tab-overview">
+            <div class="chart-grid chart-grid-2">
+                <div class="chart-card" id="card-org-type">
+                    <h3>Responden Berdasarkan Jenis Organisasi</h3>
+                    <p class="chart-subtitle">Distribusi responden di berbagai sektor industri</p>
+                    <div class="chart-wrapper" style="height:400px;">
+                        <canvas id="chartOrgType"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-event-freq">
+                    <h3>Frekuensi Event Per Tahun</h3>
+                    <p class="chart-subtitle">Jumlah event yang diselenggarakan responden per tahun</p>
+                    <div class="chart-wrapper" style="height:400px;">
+                        <canvas id="chartEventFreq"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-grid chart-grid-2" style="margin-top:0;">
+                <div class="chart-card" id="card-event-scale">
+                    <h3>Distribusi Skala Event</h3>
+                    <p class="chart-subtitle">Proporsi event berdasarkan jangkauan geografis (boleh memilih lebih dari
+                        satu)</p>
+                    <div class="chart-wrapper" style="height:340px;">
+                        <canvas id="chartEventScale"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-knowledge">
+                    <h3>Tingkat Pengetahuan tentang Metodologi Dampak Ekonomi</h3>
+                    <p class="chart-subtitle">Penilaian mandiri tentang keakraban dengan tools pengukuran dampak ekonomi
+                        event</p>
+                    <div class="chart-wrapper" style="height:340px;">
+                        <canvas id="chartKnowledge"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">14</div>
-            <div class="stat-label">Jenis Organisasi</div>
+
+        <!-- ====== TAB 2: DAMPAK EKONOMI & KEBERLANJUTAN ====== -->
+        <div class="tab-content" id="tab-impact">
+
+            <!-- Bagian atas: Dua chart berdampingan -->
+            <div class="chart-grid chart-grid-2">
+                <div class="chart-card" id="card-sustain-ratings">
+                    <h3>Pentingnya Aspek Keberlanjutan</h3>
+                    <p class="chart-subtitle">Skala Likert (1 = Tidak Penting, 5 = Sangat Penting) pada tiga dimensi
+                        keberlanjutan: Ekonomi, Lingkungan, dan Sosial</p>
+                    <div class="chart-wrapper" style="height:380px;">
+                        <canvas id="chartSustainRatings"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <span class="icon">🌱</span>
+                        <p><strong>Temuan Utama:</strong> Aspek Sosial (pemberdayaan komunitas lokal, UMKM,
+                            aksesibilitas) mendapatkan skor tertinggi dengan <strong>67%</strong> responden menilai
+                            "Sangat Penting", sementara aspek Ekonomi (60%) dan Lingkungan (59%) juga dinilai tinggi
+                            oleh mayoritas responden.</p>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-econ-ratings">
+                    <h3>Pentingnya Pengukuran Ekonomi Berdasarkan Tujuan</h3>
+                    <p class="chart-subtitle">Skala Likert (1 = Tidak Penting, 5 = Sangat Penting) pada dua tujuan
+                        pengukuran dampak ekonomi</p>
+                    <div class="chart-wrapper" style="height:380px;">
+                        <canvas id="chartEconRatings"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <span class="icon">💡</span>
+                        <p><strong>Temuan Utama:</strong> Pengukuran dampak ekonomi untuk komunikasi dengan pemangku
+                            kepentingan mendapatkan proporsi tertinggi pada skor "Sangat Penting" (58%), menunjukkan
+                            kebutuhan kuat akan pelaporan berbasis bukti.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rata-rata Skor per Dimensi Keberlanjutan -->
+            <div class="chart-grid chart-grid-2" style="margin-top:0;">
+                <div class="chart-card" id="card-sustain-avg">
+                    <h3>Rata-rata Skor per Dimensi Keberlanjutan</h3>
+                    <p class="chart-subtitle">Nilai rata-rata dari tiga dimensi: Ekonomi, Lingkungan, dan Sosial</p>
+                    <div class="chart-wrapper" style="height:340px;">
+                        <canvas id="chartSustainAvg"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-by-org">
+                    <h3>Skor per Dimensi Berdasarkan Jenis Organisasi</h3>
+                    <p class="chart-subtitle">Rata-rata skor Ekonomi, Lingkungan, dan Sosial pada organisasi utama</p>
+                    <div class="chart-wrapper" style="height:340px;">
+                        <canvas id="chartByOrg"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">84%</div>
-            <div class="stat-label">Menilai Keberlanjutan ≥ 4</div>
+
+        <!-- ====== TAB 3: TANTANGAN ====== -->
+        <div class="tab-content" id="tab-challenges">
+            <div class="chart-grid chart-grid-1">
+                <div class="chart-card" id="card-challenges">
+                    <h3>Tantangan Utama dalam Menerapkan Prinsip Keberlanjutan</h3>
+                    <p class="chart-subtitle">Jawaban boleh lebih dari satu — menampilkan persentase responden yang
+                        memilih setiap tantangan</p>
+                    <div class="chart-wrapper" style="height:400px;">
+                        <canvas id="chartChallenges"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <span class="icon">🎯</span>
+                        <p><strong>Temuan Utama:</strong> <strong>Kurangnya pengetahuan/SDM</strong> (61%) dan
+                            <strong>tidak ada regulasi/standar</strong> (54%) merupakan dua hambatan dominan, diikuti
+                            <strong>keterbatasan anggaran</strong> (51%). Mengatasi hal ini melalui peningkatan
+                            kapasitas dan penyusunan standar akan memberikan dampak terbesar.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-grid chart-grid-2" style="margin-top: 0;">
+                <div class="chart-card" id="card-challenge-combo">
+                    <h3>Jumlah Tantangan per Responden</h3>
+                    <p class="chart-subtitle">Berapa banyak tantangan yang dipilih setiap responden secara bersamaan</p>
+                    <div class="chart-wrapper" style="height:320px;">
+                        <canvas id="chartChallengeCombo"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-challenge-by-knowledge">
+                    <h3>Tantangan Utama Berdasarkan Tingkat Pengetahuan</h3>
+                    <p class="chart-subtitle">Perbandingan pola tantangan antara responden yang memahami vs belum
+                        memahami</p>
+                    <div class="chart-wrapper" style="height:320px;">
+                        <canvas id="chartChallengeByKnowledge"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- ====== TAB 4: SERTIFIKASI ====== -->
+        <div class="tab-content" id="tab-certification">
+            <div class="chart-grid chart-grid-2">
+                <div class="chart-card" id="card-cert-status">
+                    <h3>Status Sertifikasi Sustainable MICE</h3>
+                    <p class="chart-subtitle">Status sertifikasi saat ini dari seluruh responden (tidak termasuk jawaban
+                        kosong)</p>
+                    <div class="chart-wrapper" style="height:380px;">
+                        <canvas id="chartCertStatus"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-cert-by-org">
+                    <h3>Status Sertifikasi per Jenis Organisasi</h3>
+                    <p class="chart-subtitle">Kesiapan sertifikasi di berbagai segmen organisasi utama</p>
+                    <div class="chart-wrapper" style="height:380px;">
+                        <canvas id="chartCertByOrg"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-grid chart-grid-1" style="margin-top:0;">
+                <div class="chart-card" id="card-cert-insight">
+                    <h3>Sertifikasi vs. Persepsi Keberlanjutan</h3>
+                    <p class="chart-subtitle">Rata-rata skor pentingnya keberlanjutan berdasarkan status sertifikasi</p>
+                    <div class="chart-wrapper" style="height:340px;">
+                        <canvas id="chartCertVsEsg"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <span class="icon">🏆</span>
+                        <p><strong>Temuan Utama:</strong> Organisasi yang sedang dalam proses atau berencana mengajukan
+                            sertifikasi menunjukkan skor pentingnya keberlanjutan tertinggi (4,7 – 4,9), sementara yang
+                            belum berencana masih menilai 4,3. Kesenjangan ada pada aksi, bukan persepsi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer" id="footer">
+            <p>
+                WTF11 Mini-Survey Dashboard — Persepsi Pasar terhadap Pengukuran Dampak Ekonomi Event &
+                Keberlanjutan<br>
+                Data dikumpulkan: 26 Maret – 20 April 2026 • 108 Responden<br>
+                Dibuat oleh Wise Steps Consulting
+            </p>
+        </footer>
     </div>
 
-    <!-- TABS -->
-    <div class="tabs" id="tabs">
-        <button class="tab-btn active" data-tab="tab-overview" id="tab-btn-overview">📊 Ringkasan</button>
-        <button class="tab-btn" data-tab="tab-impact" id="tab-btn-impact">📈 Dampak Ekonomi & Keberlanjutan</button>
-        <button class="tab-btn" data-tab="tab-challenges" id="tab-btn-challenges">⚠️ Tantangan</button>
-        <button class="tab-btn" data-tab="tab-certification" id="tab-btn-certification">🏅 Sertifikasi</button>
-    </div>
+    <script>
+        // ==========================================
+        // SETUP
+        // ==========================================
+        Chart.register(ChartDataLabels);
 
-    <!-- ====== TAB 1: RINGKASAN ====== -->
-    <div class="tab-content active" id="tab-overview">
-        <div class="chart-grid chart-grid-2">
-            <div class="chart-card" id="card-org-type">
-                <h3>Responden Berdasarkan Jenis Organisasi</h3>
-                <p class="chart-subtitle">Distribusi responden di berbagai sektor industri</p>
-                <div class="chart-wrapper" style="height:400px;">
-                    <canvas id="chartOrgType"></canvas>
-                </div>
-            </div>
-            <div class="chart-card" id="card-event-freq">
-                <h3>Frekuensi Event Per Tahun</h3>
-                <p class="chart-subtitle">Jumlah event yang diselenggarakan responden per tahun</p>
-                <div class="chart-wrapper" style="height:400px;">
-                    <canvas id="chartEventFreq"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="chart-grid chart-grid-2" style="margin-top:0;">
-            <div class="chart-card" id="card-event-scale">
-                <h3>Distribusi Skala Event</h3>
-                <p class="chart-subtitle">Proporsi event berdasarkan jangkauan geografis (boleh memilih lebih dari satu)</p>
-                <div class="chart-wrapper" style="height:340px;">
-                    <canvas id="chartEventScale"></canvas>
-                </div>
-            </div>
-            <div class="chart-card" id="card-knowledge">
-                <h3>Tingkat Pengetahuan tentang Metodologi Dampak Ekonomi</h3>
-                <p class="chart-subtitle">Penilaian mandiri tentang keakraban dengan tools pengukuran dampak ekonomi event</p>
-                <div class="chart-wrapper" style="height:340px;">
-                    <canvas id="chartKnowledge"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+        const TOTAL = 108;
+        const pct = (v) => ((v / TOTAL) * 100).toFixed(1);
+        const pctInt = (v) => Math.round((v / TOTAL) * 100);
 
-    <!-- ====== TAB 2: DAMPAK EKONOMI & KEBERLANJUTAN ====== -->
-    <div class="tab-content" id="tab-impact">
+        // Color palette from brand guideline
+        const C = {
+            warmGray: '#7d7060',
+            steelBlue: '#8498a8',
+            darkTeal: '#4e6169',
+            gold: '#d4b44c',
+            goldLight: '#e2c96e',
+            goldDark: '#b89a3a',
+            lightGray: '#e3e1dd',
+            charcoal: '#2d2e33',
+            tealLight: '#6a8590',
+            warmLight: '#a09580',
+            slate: '#5d6e78',
+        };
 
-        <!-- Bagian atas: Dua chart berdampingan -->
-        <div class="chart-grid chart-grid-2">
-            <div class="chart-card" id="card-sustain-ratings">
-                <h3>Pentingnya Aspek Keberlanjutan</h3>
-                <p class="chart-subtitle">Skala Likert (1 = Tidak Penting, 5 = Sangat Penting) pada tiga dimensi keberlanjutan: Ekonomi, Lingkungan, dan Sosial</p>
-                <div class="chart-wrapper" style="height:380px;">
-                    <canvas id="chartSustainRatings"></canvas>
-                </div>
-                <div class="insight-box">
-                    <span class="icon">🌱</span>
-                    <p><strong>Temuan Utama:</strong> Aspek Sosial (pemberdayaan komunitas lokal, UMKM, aksesibilitas) mendapatkan skor tertinggi dengan <strong>67%</strong> responden menilai "Sangat Penting", sementara aspek Ekonomi (60%) dan Lingkungan (59%) juga dinilai tinggi oleh mayoritas responden.</p>
-                </div>
-            </div>
-            <div class="chart-card" id="card-econ-ratings">
-                <h3>Pentingnya Pengukuran Ekonomi Berdasarkan Tujuan</h3>
-                <p class="chart-subtitle">Skala Likert (1 = Tidak Penting, 5 = Sangat Penting) pada dua tujuan pengukuran dampak ekonomi</p>
-                <div class="chart-wrapper" style="height:380px;">
-                    <canvas id="chartEconRatings"></canvas>
-                </div>
-                <div class="insight-box">
-                    <span class="icon">💡</span>
-                    <p><strong>Temuan Utama:</strong> Pengukuran dampak ekonomi untuk komunikasi dengan pemangku kepentingan mendapatkan proporsi tertinggi pada skor "Sangat Penting" (58%), menunjukkan kebutuhan kuat akan pelaporan berbasis bukti.</p>
-                </div>
-            </div>
-        </div>
+        const PALETTE = [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.goldDark, C.tealLight, C.warmLight, C.slate, C.goldLight];
 
-        <!-- Rata-rata Skor per Dimensi Keberlanjutan -->
-        <div class="chart-grid chart-grid-2" style="margin-top:0;">
-            <div class="chart-card" id="card-sustain-avg">
-                <h3>Rata-rata Skor per Dimensi Keberlanjutan</h3>
-                <p class="chart-subtitle">Nilai rata-rata dari tiga dimensi: Ekonomi, Lingkungan, dan Sosial</p>
-                <div class="chart-wrapper" style="height:340px;">
-                    <canvas id="chartSustainAvg"></canvas>
-                </div>
-            </div>
-            <div class="chart-card" id="card-by-org">
-                <h3>Skor per Dimensi Berdasarkan Jenis Organisasi</h3>
-                <p class="chart-subtitle">Rata-rata skor Ekonomi, Lingkungan, dan Sosial pada organisasi utama</p>
-                <div class="chart-wrapper" style="height:340px;">
-                    <canvas id="chartByOrg"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+        // Likert colors — warm to cool
+        const LIKERT_COLORS = ['#8b5e4b', '#c49650', '#d4b44c', '#8498a8', '#4e6169'];
+        const LIKERT_LABELS = ['1 - Tidak Penting', '2', '3', '4', '5 - Sangat Penting'];
 
-    <!-- ====== TAB 3: TANTANGAN ====== -->
-    <div class="tab-content" id="tab-challenges">
-        <div class="chart-grid chart-grid-1">
-            <div class="chart-card" id="card-challenges">
-                <h3>Tantangan Utama dalam Menerapkan Prinsip Keberlanjutan</h3>
-                <p class="chart-subtitle">Jawaban boleh lebih dari satu — menampilkan persentase responden yang memilih setiap tantangan</p>
-                <div class="chart-wrapper" style="height:400px;">
-                    <canvas id="chartChallenges"></canvas>
-                </div>
-                <div class="insight-box">
-                    <span class="icon">🎯</span>
-                    <p><strong>Temuan Utama:</strong> <strong>Kurangnya pengetahuan/SDM</strong> (61%) dan <strong>tidak ada regulasi/standar</strong> (54%) merupakan dua hambatan dominan, diikuti <strong>keterbatasan anggaran</strong> (51%). Mengatasi hal ini melalui peningkatan kapasitas dan penyusunan standar akan memberikan dampak terbesar.</p>
-                </div>
-            </div>
-        </div>
-        <div class="chart-grid chart-grid-2" style="margin-top: 0;">
-            <div class="chart-card" id="card-challenge-combo">
-                <h3>Jumlah Tantangan per Responden</h3>
-                <p class="chart-subtitle">Berapa banyak tantangan yang dipilih setiap responden secara bersamaan</p>
-                <div class="chart-wrapper" style="height:320px;">
-                    <canvas id="chartChallengeCombo"></canvas>
-                </div>
-            </div>
-            <div class="chart-card" id="card-challenge-by-knowledge">
-                <h3>Tantangan Utama Berdasarkan Tingkat Pengetahuan</h3>
-                <p class="chart-subtitle">Perbandingan pola tantangan antara responden yang memahami vs belum memahami</p>
-                <div class="chart-wrapper" style="height:320px;">
-                    <canvas id="chartChallengeByKnowledge"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+        // Chart defaults (dark text for light cards)
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#555555';
+        Chart.defaults.plugins.legend.labels.usePointStyle = true;
+        Chart.defaults.plugins.legend.labels.pointStyle = 'rectRounded';
+        Chart.defaults.plugins.legend.labels.padding = 16;
 
-    <!-- ====== TAB 4: SERTIFIKASI ====== -->
-    <div class="tab-content" id="tab-certification">
-        <div class="chart-grid chart-grid-2">
-            <div class="chart-card" id="card-cert-status">
-                <h3>Status Sertifikasi Sustainable MICE</h3>
-                <p class="chart-subtitle">Status sertifikasi saat ini dari seluruh responden (tidak termasuk jawaban kosong)</p>
-                <div class="chart-wrapper" style="height:380px;">
-                    <canvas id="chartCertStatus"></canvas>
-                </div>
-            </div>
-            <div class="chart-card" id="card-cert-by-org">
-                <h3>Status Sertifikasi per Jenis Organisasi</h3>
-                <p class="chart-subtitle">Kesiapan sertifikasi di berbagai segmen organisasi utama</p>
-                <div class="chart-wrapper" style="height:380px;">
-                    <canvas id="chartCertByOrg"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="chart-grid chart-grid-1" style="margin-top:0;">
-            <div class="chart-card" id="card-cert-insight">
-                <h3>Sertifikasi vs. Persepsi Keberlanjutan</h3>
-                <p class="chart-subtitle">Rata-rata skor pentingnya keberlanjutan berdasarkan status sertifikasi</p>
-                <div class="chart-wrapper" style="height:340px;">
-                    <canvas id="chartCertVsEsg"></canvas>
-                </div>
-                <div class="insight-box">
-                    <span class="icon">🏆</span>
-                    <p><strong>Temuan Utama:</strong> Organisasi yang sedang dalam proses atau berencana mengajukan sertifikasi menunjukkan skor pentingnya keberlanjutan tertinggi (4,7 – 4,9), sementara yang belum berencana masih menilai 4,3. Kesenjangan ada pada aksi, bukan persepsi.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        // ==========================================
+        // RAW DATA (108 responden)
+        // ==========================================
 
-    <!-- FOOTER -->
-    <footer class="footer" id="footer">
-        <p>
-            WTF11 Mini-Survey Dashboard — Persepsi Pasar terhadap Pengukuran Dampak Ekonomi Event & Keberlanjutan<br>
-            Data dikumpulkan: 26 Maret – 20 April 2026 • 108 Responden<br>
-            Dibuat dengan ❤️ untuk Wise Steps Consulting
-        </p>
-    </footer>
-</div>
+        const orgTypeData = {
+            'EO / PCO': 24,
+            'Lembaga Pendidikan / Akademisi': 15,
+            'Kementerian / Lembaga / Badan': 15,
+            'Venue / Hotel': 13,
+            'Dinas Pariwisata / Pemda': 11,
+            'Travel Agent / Tour Operator': 6,
+            'Perusahaan Swasta / Sponsor': 5,
+            'Asosiasi Industri / Profesi': 5,
+            'Lainnya': 14,
+        };
 
-<script>
-// ==========================================
-// SETUP
-// ==========================================
-Chart.register(ChartDataLabels);
+        const eventFreqData = {
+            '1–3 event/tahun': 46,
+            '4–6 event/tahun': 18,
+            '>6 event/tahun': 33,
+            'Belum pernah': 11,
+        };
 
-const TOTAL = 108;
-const pct = (v) => ((v / TOTAL) * 100).toFixed(1);
-const pctInt = (v) => Math.round((v / TOTAL) * 100);
+        const eventScaleData = {
+            'Lokal / Regional': 65,
+            'Domestik / Nasional': 65,
+            'Internasional': 29,
+        };
 
-// Color palette from brand guideline
-const C = {
-    warmGray:    '#7d7060',
-    steelBlue:   '#8498a8',
-    darkTeal:    '#4e6169',
-    gold:        '#d4b44c',
-    goldLight:   '#e2c96e',
-    goldDark:    '#b89a3a',
-    lightGray:   '#e3e1dd',
-    charcoal:    '#2d2e33',
-    tealLight:   '#6a8590',
-    warmLight:   '#a09580',
-    slate:       '#5d6e78',
-};
+        const knowledgeData = {
+            'Belum tahu sama sekali': 17,
+            'Tahu sedikit, belum menerapkan': 37,
+            'Sudah mencoba sederhana': 40,
+            'Rutin dgn metodologi standar': 14,
+        };
 
-const PALETTE = [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.goldDark, C.tealLight, C.warmLight, C.slate, C.goldLight];
+        // Likert distributions
+        const q1_econMeasure = { 1: 1, 2: 3, 3: 7, 4: 32, 5: 65 };
+        const q2_econDecision = { 1: 0, 2: 0, 3: 11, 4: 37, 5: 60 };
+        const q3_econStakeholder = { 1: 0, 2: 1, 3: 9, 4: 35, 5: 63 };
+        const q5_environmental = { 1: 1, 2: 3, 3: 9, 4: 31, 5: 64 };
+        const q6_social = { 1: 0, 2: 1, 3: 6, 4: 29, 5: 72 };
 
-// Likert colors — warm to cool
-const LIKERT_COLORS = ['#8b5e4b', '#c49650', '#d4b44c', '#8498a8', '#4e6169'];
-const LIKERT_LABELS = ['1 - Tidak Penting', '2', '3', '4', '5 - Sangat Penting'];
-
-// Chart defaults (dark text for light cards)
-Chart.defaults.font.family = "'Inter', sans-serif";
-Chart.defaults.color = '#555555';
-Chart.defaults.plugins.legend.labels.usePointStyle = true;
-Chart.defaults.plugins.legend.labels.pointStyle = 'rectRounded';
-Chart.defaults.plugins.legend.labels.padding = 16;
-
-// ==========================================
-// RAW DATA (108 responden)
-// ==========================================
-
-const orgTypeData = {
-    'EO / PCO': 24,
-    'Lembaga Pendidikan / Akademisi': 15,
-    'Kementerian / Lembaga / Badan': 15,
-    'Venue / Hotel': 13,
-    'Dinas Pariwisata / Pemda': 11,
-    'Travel Agent / Tour Operator': 6,
-    'Perusahaan Swasta / Sponsor': 5,
-    'Asosiasi Industri / Profesi': 5,
-    'Lainnya': 14,
-};
-
-const eventFreqData = {
-    '1–3 event/tahun': 46,
-    '4–6 event/tahun': 18,
-    '>6 event/tahun': 33,
-    'Belum pernah': 11,
-};
-
-const eventScaleData = {
-    'Lokal / Regional': 65,
-    'Domestik / Nasional': 65,
-    'Internasional': 29,
-};
-
-const knowledgeData = {
-    'Belum tahu sama sekali': 17,
-    'Tahu sedikit, belum menerapkan': 37,
-    'Sudah mencoba sederhana': 40,
-    'Rutin dgn metodologi standar': 14,
-};
-
-// Likert distributions
-const q1_econMeasure = { 1: 1, 2: 3, 3: 7, 4: 32, 5: 65 };
-const q2_econDecision = { 1: 0, 2: 0, 3: 11, 4: 37, 5: 60 };
-const q3_econStakeholder = { 1: 0, 2: 1, 3: 9, 4: 35, 5: 63 };
-const q5_environmental = { 1: 1, 2: 3, 3: 9, 4: 31, 5: 64 };
-const q6_social = { 1: 0, 2: 1, 3: 6, 4: 29, 5: 72 };
-
-function calcAvg(dist) {
-    let sum = 0, count = 0;
-    for (let k in dist) { sum += parseInt(k) * dist[k]; count += dist[k]; }
-    return (sum / count).toFixed(2);
-}
-
-// Average ekonomi = avg of Q1,Q2,Q3
-const avgEkon = ((parseFloat(calcAvg(q1_econMeasure)) + parseFloat(calcAvg(q2_econDecision)) + parseFloat(calcAvg(q3_econStakeholder))) / 3).toFixed(2);
-
-const challengesData = {
-    'Kurangnya Pengetahuan / SDM': 66,
-    'Tidak Ada Regulasi / Standar': 58,
-    'Keterbatasan Anggaran': 55,
-    'Kurangnya Dukungan Mitra': 38,
-    'Kesulitan Mengukur Dampak': 37,
-    'Lainnya': 2,
-};
-
-const challengeCountData = {
-    '1 tantangan': 41,
-    '2 tantangan': 23,
-    '3 tantangan': 20,
-    '4 tantangan': 11,
-    '5 tantangan': 13,
-};
-
-const certStatusData = {
-    'Sudah bersertifikasi': 8,
-    'Berencana mengajukan': 24,
-    'Sedang dalam proses': 4,
-    'Belum ada rencana': 22,
-    'Tidak tahu / Tidak relevan': 16,
-    'Tidak disebutkan': 34,
-};
-
-// ==========================================
-// TAB SWITCHING
-// ==========================================
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-    });
-});
-
-// ==========================================
-// TAB 1: RINGKASAN
-// ==========================================
-
-// Jenis Organisasi
-new Chart(document.getElementById('chartOrgType'), {
-    type: 'bar',
-    data: {
-        labels: Object.keys(orgTypeData),
-        datasets: [{
-            data: Object.values(orgTypeData).map(v => pctInt(v)),
-            backgroundColor: PALETTE,
-            borderRadius: 6,
-            borderSkipped: false,
-            barThickness: 26,
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                anchor: 'end', align: 'end',
-                color: '#555',
-                font: { weight: 600, size: 12 },
-                formatter: (v) => v + '%',
-            }
-        },
-        scales: {
-            x: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11 }, callback: v => v + '%' }, max: 30 },
-            y: { grid: { display: false }, ticks: { font: { size: 11 } } },
+        function calcAvg(dist) {
+            let sum = 0, count = 0;
+            for (let k in dist) { sum += parseInt(k) * dist[k]; count += dist[k]; }
+            return (sum / count).toFixed(2);
         }
-    }
-});
 
-// Frekuensi Event
-new Chart(document.getElementById('chartEventFreq'), {
-    type: 'doughnut',
-    data: {
-        labels: Object.keys(eventFreqData),
-        datasets: [{
-            data: Object.values(eventFreqData),
-            backgroundColor: [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.tealLight],
-            borderColor: '#e9e9e9',
-            borderWidth: 3,
-            hoverOffset: 8,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '55%',
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 14 } },
-            datalabels: {
-                color: '#fff',
-                font: { weight: 700, size: 13 },
-                formatter: (v) => pctInt(v) + '%',
-            }
-        }
-    }
-});
+        // Average ekonomi = avg of Q1,Q2,Q3
+        const avgEkon = ((parseFloat(calcAvg(q1_econMeasure)) + parseFloat(calcAvg(q2_econDecision)) + parseFloat(calcAvg(q3_econStakeholder))) / 3).toFixed(2);
 
-// Skala Event
-new Chart(document.getElementById('chartEventScale'), {
-    type: 'bar',
-    data: {
-        labels: Object.keys(eventScaleData),
-        datasets: [{
-            data: Object.values(eventScaleData).map(v => pctInt(v)),
-            backgroundColor: [C.darkTeal, C.steelBlue, C.gold],
-            borderRadius: 8,
-            barThickness: 36,
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                anchor: 'end', align: 'end',
-                color: '#555',
-                font: { weight: 700, size: 13 },
-                formatter: (v) => v + '%',
-            }
-        },
-        scales: {
-            x: { grid: { color: 'rgba(0,0,0,0.05)' }, max: 85, ticks: { callback: v => v + '%' } },
-            y: { grid: { display: false }, ticks: { font: { size: 13, weight: 500 } } },
-        }
-    }
-});
+        const challengesData = {
+            'Kurangnya Pengetahuan / SDM': 66,
+            'Tidak Ada Regulasi / Standar': 58,
+            'Keterbatasan Anggaran': 55,
+            'Kurangnya Dukungan Mitra': 38,
+            'Kesulitan Mengukur Dampak': 37,
+            'Lainnya': 2,
+        };
 
-// Tingkat Pengetahuan
-new Chart(document.getElementById('chartKnowledge'), {
-    type: 'bar',
-    data: {
-        labels: Object.keys(knowledgeData),
-        datasets: [{
-            data: Object.values(knowledgeData).map(v => pctInt(v)),
-            backgroundColor: [C.warmGray, C.goldDark, C.gold, C.steelBlue, C.tealLight],
-            borderRadius: 8,
-            barThickness: 30,
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                anchor: 'end', align: 'end',
-                color: '#555',
-                font: { weight: 700, size: 13 },
-                formatter: (v) => v + '%',
-            }
-        },
-        scales: {
-            x: { grid: { color: 'rgba(0,0,0,0.05)' }, max: 45, ticks: { callback: v => v + '%' } },
-            y: { grid: { display: false }, ticks: { font: { size: 11 } } },
-        }
-    }
-});
+        const challengeCountData = {
+            '1 tantangan': 41,
+            '2 tantangan': 23,
+            '3 tantangan': 20,
+            '4 tantangan': 11,
+            '5 tantangan': 13,
+        };
 
-// ==========================================
-// TAB 2: DAMPAK EKONOMI & KEBERLANJUTAN
-// ==========================================
+        const certStatusData = {
+            'Sudah bersertifikasi': 8,
+            'Berencana mengajukan': 24,
+            'Sedang dalam proses': 4,
+            'Belum ada rencana': 22,
+            'Tidak tahu / Tidak relevan': 16,
+            'Tidak disebutkan': 34,
+        };
 
-// LEFT: Pentingnya Aspek Keberlanjutan (3 dimensi: Ekonomi, Lingkungan, Sosial)
-const sustainLabels = [
-    'Aspek\nEkonomi',
-    'Aspek\nLingkungan',
-    'Aspek\nSosial'
-];
-const sustainDists = [q1_econMeasure, q5_environmental, q6_social];
+        // ==========================================
+        // TAB SWITCHING
+        // ==========================================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
 
-new Chart(document.getElementById('chartSustainRatings'), {
-    type: 'bar',
-    data: {
-        labels: sustainLabels,
-        datasets: [1,2,3,4,5].map((rating, i) => ({
-            label: LIKERT_LABELS[i],
-            data: sustainDists.map(d => pctInt(d[rating] || 0)),
-            backgroundColor: LIKERT_COLORS[i],
-            borderRadius: 4,
-            borderSkipped: false,
-        }))
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
-            datalabels: {
-                color: '#fff',
-                font: { weight: 600, size: 11 },
-                formatter: (v) => v > 3 ? v + '%' : '',
-            }
-        },
-        scales: {
-            x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
-            y: { stacked: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
-        }
-    }
-});
+        // ==========================================
+        // TAB 1: RINGKASAN
+        // ==========================================
 
-// RIGHT: Pentingnya Pengukuran Ekonomi Berdasarkan Tujuan (2 sub)
-const econLabels = [
-    'Data untuk\nPengambilan Keputusan',
-    'Laporan untuk\nPemangku Kepentingan'
-];
-const econDists = [q2_econDecision, q3_econStakeholder];
-
-new Chart(document.getElementById('chartEconRatings'), {
-    type: 'bar',
-    data: {
-        labels: econLabels,
-        datasets: [1,2,3,4,5].map((rating, i) => ({
-            label: LIKERT_LABELS[i],
-            data: econDists.map(d => pctInt(d[rating] || 0)),
-            backgroundColor: LIKERT_COLORS[i],
-            borderRadius: 4,
-            borderSkipped: false,
-        }))
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
-            datalabels: {
-                color: '#fff',
-                font: { weight: 600, size: 11 },
-                formatter: (v) => v > 3 ? v + '%' : '',
-            }
-        },
-        scales: {
-            x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
-            y: { stacked: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
-        }
-    }
-});
-
-// Rata-rata Skor per Dimensi Keberlanjutan (Radar)
-new Chart(document.getElementById('chartSustainAvg'), {
-    type: 'radar',
-    data: {
-        labels: ['Ekonomi\n(dampak PDB,\npengeluaran, multiplier)', 'Lingkungan\n(limbah, karbon,\nefisiensi energi)', 'Sosial\n(komunitas, UMKM,\naksesibilitas)'],
-        datasets: [{
-            label: 'Skor Rata-rata',
-            data: [avgEkon, calcAvg(q5_environmental), calcAvg(q6_social)],
-            backgroundColor: 'rgba(212, 180, 76, 0.12)',
-            borderColor: C.gold,
-            borderWidth: 2.5,
-            pointBackgroundColor: C.gold,
-            pointRadius: 6,
-            pointHoverRadius: 8,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                color: C.darkTeal,
-                font: { weight: 700, size: 14 },
-                anchor: 'end', align: 'end',
-            }
-        },
-        scales: {
-            r: {
-                min: 3,
-                max: 5,
-                ticks: { stepSize: 0.5, backdropColor: 'transparent', font: { size: 10 }, color: '#888' },
-                grid: { color: 'rgba(78,97,105,0.12)' },
-                angleLines: { color: 'rgba(78,97,105,0.12)' },
-                pointLabels: { font: { size: 11, weight: 500 }, color: '#555' }
-            }
-        }
-    }
-});
-
-// Skor per Dimensi Berdasarkan Organisasi (Grouped Bar)
-const orgLabelsShort = ['EO/PCO', 'Akademisi', 'Dinas Pariwisata', 'Kementerian', 'Venue/Hotel', 'Swasta', 'Travel Agent', 'Asosiasi'];
-
-new Chart(document.getElementById('chartByOrg'), {
-    type: 'bar',
-    data: {
-        labels: orgLabelsShort,
-        datasets: [
-            {
-                label: 'Ekonomi',
-                data: [4.50, 4.56, 4.52, 4.27, 4.56, 4.07, 4.28, 4.80],
-                backgroundColor: C.gold,
-                borderRadius: 4,
+        // Jenis Organisasi
+        new Chart(document.getElementById('chartOrgType'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(orgTypeData),
+                datasets: [{
+                    data: Object.values(orgTypeData).map(v => pctInt(v)),
+                    backgroundColor: PALETTE,
+                    borderRadius: 6,
+                    borderSkipped: false,
+                    barThickness: 26,
+                }]
             },
-            {
-                label: 'Lingkungan',
-                data: [4.33, 4.60, 4.55, 4.13, 4.54, 3.60, 4.83, 5.00],
-                backgroundColor: C.steelBlue,
-                borderRadius: 4,
-            },
-            {
-                label: 'Sosial',
-                data: [4.62, 4.87, 4.73, 4.27, 4.54, 4.60, 4.67, 4.80],
-                backgroundColor: C.darkTeal,
-                borderRadius: 4,
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 14 } },
-            datalabels: {
-                display: false,
-            }
-        },
-        scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45 } },
-            y: { min: 3.5, max: 5, grid: { color: 'rgba(0,0,0,0.05)' } },
-        }
-    }
-});
-
-// ==========================================
-// TAB 3: TANTANGAN
-// ==========================================
-
-// Tantangan utama
-new Chart(document.getElementById('chartChallenges'), {
-    type: 'bar',
-    data: {
-        labels: Object.keys(challengesData),
-        datasets: [{
-            data: Object.values(challengesData).map(v => pctInt(v)),
-            backgroundColor: [C.gold, C.goldDark, C.steelBlue, C.darkTeal, C.warmGray, C.tealLight],
-            borderRadius: 8,
-            barThickness: 36,
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                anchor: 'end', align: 'end',
-                color: '#555',
-                font: { weight: 700, size: 13 },
-                formatter: (v) => v + '%',
-            }
-        },
-        scales: {
-            x: { grid: { color: 'rgba(0,0,0,0.05)' }, max: 85, ticks: { callback: v => v + '%' } },
-            y: { grid: { display: false }, ticks: { font: { size: 12, weight: 500 } } },
-        }
-    }
-});
-
-// Jumlah tantangan per responden
-new Chart(document.getElementById('chartChallengeCombo'), {
-    type: 'bar',
-    data: {
-        labels: Object.keys(challengeCountData),
-        datasets: [{
-            data: Object.values(challengeCountData).map(v => pctInt(v)),
-            backgroundColor: [C.darkTeal, C.steelBlue, C.gold, C.goldDark, C.warmGray, C.tealLight],
-            borderRadius: 8,
-            barThickness: 32,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                anchor: 'end', align: 'end',
-                color: '#555',
-                font: { weight: 700, size: 13 },
-                formatter: (v) => v + '%',
-            }
-        },
-        scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-            y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
-        }
-    }
-});
-
-// Tantangan per tingkat pengetahuan
-const totalLow = 54; // Belum tahu + Tahu sedikit
-const totalHigh = 54; // Sudah mencoba + Rutin
-
-new Chart(document.getElementById('chartChallengeByKnowledge'), {
-    type: 'bar',
-    data: {
-        labels: ['Anggaran', 'Kurangnya\nPengetahuan', 'Tidak Ada\nStandar', 'Kurangnya\nDukungan Mitra', 'Kesulitan\nMengukur'],
-        datasets: [
-            {
-                label: 'Belum paham / Tahu sedikit',
-                data: [Math.round(29/totalLow*100), Math.round(35/totalLow*100), Math.round(27/totalLow*100), Math.round(16/totalLow*100), Math.round(21/totalLow*100)],
-                backgroundColor: C.warmGray,
-                borderRadius: 6,
-            },
-            {
-                label: 'Sudah mencoba / Rutin menerapkan',
-                data: [Math.round(26/totalHigh*100), Math.round(31/totalHigh*100), Math.round(31/totalHigh*100), Math.round(22/totalHigh*100), Math.round(16/totalHigh*100)],
-                backgroundColor: C.steelBlue,
-                borderRadius: 6,
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 14 } },
-            datalabels: {
-                color: '#fff',
-                font: { weight: 600, size: 11 },
-                formatter: (v) => v > 10 ? v + '%' : '',
-            }
-        },
-        scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-            y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
-        }
-    }
-});
-
-// ==========================================
-// TAB 4: SERTIFIKASI
-// ==========================================
-
-// Status sertifikasi
-new Chart(document.getElementById('chartCertStatus'), {
-    type: 'doughnut',
-    data: {
-        labels: Object.keys(certStatusData),
-        datasets: [{
-            data: Object.values(certStatusData),
-            backgroundColor: [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.goldDark, C.tealLight],
-            borderColor: '#e9e9e9',
-            borderWidth: 3,
-            hoverOffset: 8,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '50%',
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
-            datalabels: {
-                color: '#fff',
-                font: { weight: 700, size: 12 },
-                formatter: (v) => {
-                    let p = pctInt(v);
-                    return p > 5 ? p + '%' : '';
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'end',
+                        color: '#555',
+                        font: { weight: 600, size: 12 },
+                        formatter: (v) => v + '%',
+                    }
                 },
+                scales: {
+                    x: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11 }, callback: v => v + '%' }, max: 30 },
+                    y: { grid: { display: false }, ticks: { font: { size: 11 } } },
+                }
             }
-        }
-    }
-});
+        });
 
-// Sertifikasi per organisasi
-const certByOrgLabels = ['EO / PCO', 'Akademisi', 'Dinas Pariwisata', 'Kementerian', 'Venue / Hotel'];
-new Chart(document.getElementById('chartCertByOrg'), {
-    type: 'bar',
-    data: {
-        labels: certByOrgLabels,
-        datasets: [
-            {
-                label: 'Sudah Bersertifikasi',
-                data: [4, 0, 0, 1, 2].map((v, i) => {
-                    const totals = [24, 15, 11, 15, 13];
-                    return Math.round(v / totals[i] * 100);
-                }),
-                backgroundColor: C.gold,
-                borderRadius: 4,
+        // Frekuensi Event
+        new Chart(document.getElementById('chartEventFreq'), {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(eventFreqData),
+                datasets: [{
+                    data: Object.values(eventFreqData),
+                    backgroundColor: [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.tealLight],
+                    borderColor: '#e9e9e9',
+                    borderWidth: 3,
+                    hoverOffset: 8,
+                }]
             },
-            {
-                label: 'Berencana / Dalam Proses',
-                data: [9, 0, 7, 4, 5].map((v, i) => {
-                    const totals = [24, 15, 11, 15, 13];
-                    return Math.round(v / totals[i] * 100);
-                }),
-                backgroundColor: C.steelBlue,
-                borderRadius: 4,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '55%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 14 } },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 700, size: 13 },
+                        formatter: (v) => pctInt(v) + '%',
+                    }
+                }
+            }
+        });
+
+        // Skala Event
+        new Chart(document.getElementById('chartEventScale'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(eventScaleData),
+                datasets: [{
+                    data: Object.values(eventScaleData).map(v => pctInt(v)),
+                    backgroundColor: [C.darkTeal, C.steelBlue, C.gold],
+                    borderRadius: 8,
+                    barThickness: 36,
+                }]
             },
-            {
-                label: 'Belum Berencana / Tidak Tahu',
-                data: [11, 0, 4, 10, 6].map((v, i) => {
-                    const totals = [24, 15, 11, 15, 13];
-                    return Math.round(v / totals[i] * 100);
-                }),
-                backgroundColor: C.warmGray,
-                borderRadius: 4,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'end',
+                        color: '#555',
+                        font: { weight: 700, size: 13 },
+                        formatter: (v) => v + '%',
+                    }
+                },
+                scales: {
+                    x: { grid: { color: 'rgba(0,0,0,0.05)' }, max: 85, ticks: { callback: v => v + '%' } },
+                    y: { grid: { display: false }, ticks: { font: { size: 13, weight: 500 } } },
+                }
+            }
+        });
+
+        // Tingkat Pengetahuan
+        new Chart(document.getElementById('chartKnowledge'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(knowledgeData),
+                datasets: [{
+                    data: Object.values(knowledgeData).map(v => pctInt(v)),
+                    backgroundColor: [C.warmGray, C.goldDark, C.gold, C.steelBlue, C.tealLight],
+                    borderRadius: 8,
+                    barThickness: 30,
+                }]
             },
-            {
-                label: 'Tidak Disebutkan',
-                data: [0, 15, 0, 0, 0].map((v, i) => {
-                    const totals = [24, 15, 11, 15, 13];
-                    return Math.round(v / totals[i] * 100);
-                }),
-                backgroundColor: 'rgba(120, 120, 120, 0.3)',
-                borderRadius: 4,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'end',
+                        color: '#555',
+                        font: { weight: 700, size: 13 },
+                        formatter: (v) => v + '%',
+                    }
+                },
+                scales: {
+                    x: { grid: { color: 'rgba(0,0,0,0.05)' }, max: 45, ticks: { callback: v => v + '%' } },
+                    y: { grid: { display: false }, ticks: { font: { size: 11 } } },
+                }
             }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
-            datalabels: {
-                color: '#fff',
-                font: { weight: 600, size: 11 },
-                formatter: (v) => v > 0 ? v + '%' : '',
+        });
+
+        // ==========================================
+        // TAB 2: DAMPAK EKONOMI & KEBERLANJUTAN
+        // ==========================================
+
+        // LEFT: Pentingnya Aspek Keberlanjutan (3 dimensi: Ekonomi, Lingkungan, Sosial)
+        const sustainLabels = [
+            'Aspek\nEkonomi',
+            'Aspek\nLingkungan',
+            'Aspek\nSosial'
+        ];
+        const sustainDists = [q1_econMeasure, q5_environmental, q6_social];
+
+        new Chart(document.getElementById('chartSustainRatings'), {
+            type: 'bar',
+            data: {
+                labels: sustainLabels,
+                datasets: [1, 2, 3, 4, 5].map((rating, i) => ({
+                    label: LIKERT_LABELS[i],
+                    data: sustainDists.map(d => pctInt(d[rating] || 0)),
+                    backgroundColor: LIKERT_COLORS[i],
+                    borderRadius: 4,
+                    borderSkipped: false,
+                }))
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 600, size: 11 },
+                        formatter: (v) => v > 3 ? v + '%' : '',
+                    }
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+                    y: { stacked: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                }
             }
-        },
-        scales: {
-            x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
-            y: { stacked: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
-        }
-    }
-});
+        });
 
-// Sertifikasi vs Keberlanjutan
-const certVsEsg = {
-    'Sudah Sertifikasi': 4.50,
-    'Berencana Mengajukan': 4.71,
-    'Dalam Proses': 4.88,
-    'Belum Berencana': 4.32,
-    'Tidak Tahu / N/A': 4.12,
-};
+        // RIGHT: Pentingnya Pengukuran Ekonomi Berdasarkan Tujuan (2 sub)
+        const econLabels = [
+            'Data untuk\nPengambilan Keputusan',
+            'Laporan untuk\nPemangku Kepentingan'
+        ];
+        const econDists = [q2_econDecision, q3_econStakeholder];
 
-new Chart(document.getElementById('chartCertVsEsg'), {
-    type: 'bar',
-    data: {
-        labels: Object.keys(certVsEsg),
-        datasets: [{
-            label: 'Rata-rata Skor Keberlanjutan',
-            data: Object.values(certVsEsg),
-            backgroundColor: [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.goldDark],
-            borderRadius: 10,
-            barThickness: 44,
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            datalabels: {
-                anchor: 'end', align: 'end',
-                color: '#555',
-                font: { weight: 800, size: 15 },
+        new Chart(document.getElementById('chartEconRatings'), {
+            type: 'bar',
+            data: {
+                labels: econLabels,
+                datasets: [1, 2, 3, 4, 5].map((rating, i) => ({
+                    label: LIKERT_LABELS[i],
+                    data: econDists.map(d => pctInt(d[rating] || 0)),
+                    backgroundColor: LIKERT_COLORS[i],
+                    borderRadius: 4,
+                    borderSkipped: false,
+                }))
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 600, size: 11 },
+                        formatter: (v) => v > 3 ? v + '%' : '',
+                    }
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+                    y: { stacked: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                }
             }
-        },
-        scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 12 } } },
-            y: { min: 3.5, max: 5, grid: { color: 'rgba(0,0,0,0.05)' } },
-        }
-    }
-});
+        });
 
-</script>
+        // Rata-rata Skor per Dimensi Keberlanjutan (Radar)
+        new Chart(document.getElementById('chartSustainAvg'), {
+            type: 'radar',
+            data: {
+                labels: ['Ekonomi\n(dampak PDB,\npengeluaran, multiplier)', 'Lingkungan\n(limbah, karbon,\nefisiensi energi)', 'Sosial\n(komunitas, UMKM,\naksesibilitas)'],
+                datasets: [{
+                    label: 'Skor Rata-rata',
+                    data: [avgEkon, calcAvg(q5_environmental), calcAvg(q6_social)],
+                    backgroundColor: 'rgba(212, 180, 76, 0.12)',
+                    borderColor: C.gold,
+                    borderWidth: 2.5,
+                    pointBackgroundColor: C.gold,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        color: C.darkTeal,
+                        font: { weight: 700, size: 14 },
+                        anchor: 'end', align: 'end',
+                    }
+                },
+                scales: {
+                    r: {
+                        min: 3,
+                        max: 5,
+                        ticks: { stepSize: 0.5, backdropColor: 'transparent', font: { size: 10 }, color: '#888' },
+                        grid: { color: 'rgba(78,97,105,0.12)' },
+                        angleLines: { color: 'rgba(78,97,105,0.12)' },
+                        pointLabels: { font: { size: 11, weight: 500 }, color: '#555' }
+                    }
+                }
+            }
+        });
+
+        // Skor per Dimensi Berdasarkan Organisasi (Grouped Bar)
+        const orgLabelsShort = ['EO/PCO', 'Akademisi', 'Dinas Pariwisata', 'Kementerian', 'Venue/Hotel', 'Swasta', 'Travel Agent', 'Asosiasi'];
+
+        new Chart(document.getElementById('chartByOrg'), {
+            type: 'bar',
+            data: {
+                labels: orgLabelsShort,
+                datasets: [
+                    {
+                        label: 'Ekonomi',
+                        data: [4.50, 4.56, 4.52, 4.27, 4.56, 4.07, 4.28, 4.80],
+                        backgroundColor: C.gold,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: 'Lingkungan',
+                        data: [4.33, 4.60, 4.55, 4.13, 4.54, 3.60, 4.83, 5.00],
+                        backgroundColor: C.steelBlue,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: 'Sosial',
+                        data: [4.62, 4.87, 4.73, 4.27, 4.54, 4.60, 4.67, 4.80],
+                        backgroundColor: C.darkTeal,
+                        borderRadius: 4,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 14 } },
+                    datalabels: {
+                        display: false,
+                    }
+                },
+                scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45 } },
+                    y: { min: 3.5, max: 5, grid: { color: 'rgba(0,0,0,0.05)' } },
+                }
+            }
+        });
+
+        // ==========================================
+        // TAB 3: TANTANGAN
+        // ==========================================
+
+        // Tantangan utama
+        new Chart(document.getElementById('chartChallenges'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(challengesData),
+                datasets: [{
+                    data: Object.values(challengesData).map(v => pctInt(v)),
+                    backgroundColor: [C.gold, C.goldDark, C.steelBlue, C.darkTeal, C.warmGray, C.tealLight],
+                    borderRadius: 8,
+                    barThickness: 36,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'end',
+                        color: '#555',
+                        font: { weight: 700, size: 13 },
+                        formatter: (v) => v + '%',
+                    }
+                },
+                scales: {
+                    x: { grid: { color: 'rgba(0,0,0,0.05)' }, max: 85, ticks: { callback: v => v + '%' } },
+                    y: { grid: { display: false }, ticks: { font: { size: 12, weight: 500 } } },
+                }
+            }
+        });
+
+        // Jumlah tantangan per responden
+        new Chart(document.getElementById('chartChallengeCombo'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(challengeCountData),
+                datasets: [{
+                    data: Object.values(challengeCountData).map(v => pctInt(v)),
+                    backgroundColor: [C.darkTeal, C.steelBlue, C.gold, C.goldDark, C.warmGray, C.tealLight],
+                    borderRadius: 8,
+                    barThickness: 32,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'end',
+                        color: '#555',
+                        font: { weight: 700, size: 13 },
+                        formatter: (v) => v + '%',
+                    }
+                },
+                scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+                    y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                }
+            }
+        });
+
+        // Tantangan per tingkat pengetahuan
+        const totalLow = 54; // Belum tahu + Tahu sedikit
+        const totalHigh = 54; // Sudah mencoba + Rutin
+
+        new Chart(document.getElementById('chartChallengeByKnowledge'), {
+            type: 'bar',
+            data: {
+                labels: ['Anggaran', 'Kurangnya\nPengetahuan', 'Tidak Ada\nStandar', 'Kurangnya\nDukungan Mitra', 'Kesulitan\nMengukur'],
+                datasets: [
+                    {
+                        label: 'Belum paham / Tahu sedikit',
+                        data: [Math.round(29 / totalLow * 100), Math.round(35 / totalLow * 100), Math.round(27 / totalLow * 100), Math.round(16 / totalLow * 100), Math.round(21 / totalLow * 100)],
+                        backgroundColor: C.warmGray,
+                        borderRadius: 6,
+                    },
+                    {
+                        label: 'Sudah mencoba / Rutin menerapkan',
+                        data: [Math.round(26 / totalHigh * 100), Math.round(31 / totalHigh * 100), Math.round(31 / totalHigh * 100), Math.round(22 / totalHigh * 100), Math.round(16 / totalHigh * 100)],
+                        backgroundColor: C.steelBlue,
+                        borderRadius: 6,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 14 } },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 600, size: 11 },
+                        formatter: (v) => v > 10 ? v + '%' : '',
+                    }
+                },
+                scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+                    y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                }
+            }
+        });
+
+        // ==========================================
+        // TAB 4: SERTIFIKASI
+        // ==========================================
+
+        // Status sertifikasi
+        new Chart(document.getElementById('chartCertStatus'), {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(certStatusData),
+                datasets: [{
+                    data: Object.values(certStatusData),
+                    backgroundColor: [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.goldDark, C.tealLight],
+                    borderColor: '#e9e9e9',
+                    borderWidth: 3,
+                    hoverOffset: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '50%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 700, size: 12 },
+                        formatter: (v) => {
+                            let p = pctInt(v);
+                            return p > 5 ? p + '%' : '';
+                        },
+                    }
+                }
+            }
+        });
+
+        // Sertifikasi per organisasi
+        const certByOrgLabels = ['EO / PCO', 'Akademisi', 'Dinas Pariwisata', 'Kementerian', 'Venue / Hotel'];
+        new Chart(document.getElementById('chartCertByOrg'), {
+            type: 'bar',
+            data: {
+                labels: certByOrgLabels,
+                datasets: [
+                    {
+                        label: 'Sudah Bersertifikasi',
+                        data: [4, 0, 0, 1, 2].map((v, i) => {
+                            const totals = [24, 15, 11, 15, 13];
+                            return Math.round(v / totals[i] * 100);
+                        }),
+                        backgroundColor: C.gold,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: 'Berencana / Dalam Proses',
+                        data: [9, 0, 7, 4, 5].map((v, i) => {
+                            const totals = [24, 15, 11, 15, 13];
+                            return Math.round(v / totals[i] * 100);
+                        }),
+                        backgroundColor: C.steelBlue,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: 'Belum Berencana / Tidak Tahu',
+                        data: [11, 0, 4, 10, 6].map((v, i) => {
+                            const totals = [24, 15, 11, 15, 13];
+                            return Math.round(v / totals[i] * 100);
+                        }),
+                        backgroundColor: C.warmGray,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: 'Tidak Disebutkan',
+                        data: [0, 15, 0, 0, 0].map((v, i) => {
+                            const totals = [24, 15, 11, 15, 13];
+                            return Math.round(v / totals[i] * 100);
+                        }),
+                        backgroundColor: 'rgba(120, 120, 120, 0.3)',
+                        borderRadius: 4,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 12 } },
+                    datalabels: {
+                        color: '#fff',
+                        font: { weight: 600, size: 11 },
+                        formatter: (v) => v > 0 ? v + '%' : '',
+                    }
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+                    y: { stacked: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => v + '%' } },
+                }
+            }
+        });
+
+        // Sertifikasi vs Keberlanjutan
+        const certVsEsg = {
+            'Sudah Sertifikasi': 4.50,
+            'Berencana Mengajukan': 4.71,
+            'Dalam Proses': 4.88,
+            'Belum Berencana': 4.32,
+            'Tidak Tahu / N/A': 4.12,
+        };
+
+        new Chart(document.getElementById('chartCertVsEsg'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(certVsEsg),
+                datasets: [{
+                    label: 'Rata-rata Skor Keberlanjutan',
+                    data: Object.values(certVsEsg),
+                    backgroundColor: [C.gold, C.steelBlue, C.darkTeal, C.warmGray, C.goldDark],
+                    borderRadius: 10,
+                    barThickness: 44,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end', align: 'end',
+                        color: '#555',
+                        font: { weight: 800, size: 15 },
+                    }
+                },
+                scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 12 } } },
+                    y: { min: 3.5, max: 5, grid: { color: 'rgba(0,0,0,0.05)' } },
+                }
+            }
+        });
+
+    </script>
 </body>
+
 </html>
